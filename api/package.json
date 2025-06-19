@@ -9,7 +9,8 @@
     "@langchain/core": "^0.3.59",
     "@langchain/openai": "^0.5.13",
     "@types/pg": "^8.15.4",
-    "elysia": "latest"
+    "elysia": "latest",
+    "openai": "^5.5.1"
   },
   "devDependencies": {
     "bun-types": "latest",
