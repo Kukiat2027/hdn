@@ -1,9 +1,11 @@
-import Elysia, { t } from "elysia";
 import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
+import Elysia, { t } from "elysia";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { createRetrievalChain } from "langchain/chains/retrieval";
+import { TextLoader } from "langchain/document_loaders/fs/text";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { connectionConfig } from "./connection";
 
 export const langchain = new Elysia({
@@ -58,4 +60,29 @@ export const langchain = new Elysia({
     body: t.Object({
       keyword: t.String(),
     }),
-  });
+  })
+  .post('/upload', async () => {
+    const loader = new TextLoader("/api/src/data/data3.txt");
+    const docs = await loader.load();
+
+    const splitter = new RecursiveCharacterTextSplitter({
+      chunkSize: 200,
+      chunkOverlap: 20,
+    });
+    const chunks = await splitter.splitDocuments(docs);
+    console.log(chunks)
+    const embeddings = new OpenAIEmbeddings({
+      // model: 'gpt-4.1-mini'
+      // model: 'gpt-4.1-mini'
+      model: 'text-embedding-3-large'
+    });
+    // Initialize PostgreSQL vector store
+    const vectorStore = await PGVectorStore.initialize(
+      embeddings,
+      connectionConfig
+    );
+
+    console.log('initialized')
+    // Add documents to the vector store
+    await vectorStore.addDocuments(chunks);
+  })
