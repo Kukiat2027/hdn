@@ -110,8 +110,8 @@ export default function HomeHero() {
         {/* Tag */}
         <Stack direction="row" spacing={1} sx={{ mx: 2 }}>
           <Chip label="ฝันเห็นงู" size="medium" onClick={() => setKeyword('ฝันเห็นงู')} />
-          <Chip label="ฝันเห็นแฟนเก่า" size="medium" onClick={() => setKeyword('ฝันเห็นแฟนเก่า')} />
-          <Chip label="ฝันเห็นพ่อแม่" size="medium" onClick={() => setKeyword('ฝันเห็นพ่อแม่')} />
+          <Chip label="ฝันเห็นขวดเหล้า" size="medium" onClick={() => setKeyword('ฝันเห็นขวดเหล้า')} />
+          <Chip label="ฝันเห็นเต่า" size="medium" onClick={() => setKeyword('ฝันเห็นเต่า')} />
         </Stack>
         {/* ปุ่มค้นหา */}
         <Button

@@ -55,20 +55,20 @@ export default function DreamResultMain({ keyword }: DreamResultMainProps) {
             <img
                 src="/dream-wolf.png"
                 alt="dream"
-                style={{ width: '100%', height: 300, objectFit: 'cover', borderRadius: 16, marginBottom: 24 }}
+                style={{ width: '100%', height: 400, objectFit: 'cover', borderRadius: 16, marginBottom: 24 }}
             />
             <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
                 เลขความฝัน
             </Typography>
             {data?.luckyNumber?.length > 0 && <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Typography sx={{ color: '#9402D9', fontWeight: 900, fontSize: 220, lineHeight: 1, mr: 8 }}>
+                <Typography sx={{ color: '#9402D9', fontWeight: 900, fontSize: 240, lineHeight: 1, mr: 12 }}>
                     {data?.luckyNumber?.[0]}
                 </Typography>
                 <Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: 70, color: '#222', mb: 1 }}>
+                    <Typography sx={{ fontWeight: 700, fontSize: 80, color: '#222', mb: 1 }}>
                         {data?.luckyNumber?.[1]} &nbsp; {data?.luckyNumber?.[2]}
                     </Typography>
-                    <Typography sx={{ fontWeight: 700, fontSize: 70, color: '#222' }}>
+                    <Typography sx={{ fontWeight: 700, fontSize: 80, color: '#222' }}>
                         {data?.luckyNumber?.[3]} &nbsp; {data?.luckyNumber?.[4]}
                     </Typography>
                 </Box>
@@ -82,11 +82,11 @@ export default function DreamResultMain({ keyword }: DreamResultMainProps) {
             {error && <Typography color="error">เกิดข้อผิดพลาดในการค้นหา</Typography>}
             {data && (
                 <>
-                    <Typography sx={{ mb: 4, fontSize: 18 }}>{data.answer}</Typography>
+                    <Typography sx={{ mb: 4, fontSize: 18 }}>{data.answer} {data?.outputText}</Typography>
                     {data.luckyNumber?.length > 0 && <>
                         <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>เลขนำโชค</Typography>
                         <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
-                            {data.luckyNumber?.map((num: string | number) => (
+                            {data.luckyNumber?.slice(0, 8).map((num: string | number) => (
                                 <Box key={num} sx={{ fontWeight: 900, fontSize: 18, color: '#a100e6', bgcolor: '#f3e6fa', px: 3, py: 1, borderRadius: 2 }}>{num}</Box>
                             ))}
                         </Box>

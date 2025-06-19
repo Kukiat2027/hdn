@@ -34,10 +34,14 @@ export default function SuccessCases() {
   return (
     <Box sx={{ px: { xs: 2, md: 8 }, py: 6 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h5" color="primary" fontWeight="bold">
+        <Typography
+          fontWeight="bold"
+          align="center"
+          sx={{ color: '#a100e6', mb: 4, fontSize: { xs: 28, md: 40 } }}
+        >
           เคสที่สำเร็จกับเรา
         </Typography>
-        <Button endIcon={<span>→</span>} sx={{ color: '#8f2fff', fontWeight: 600 }}>
+        <Button endIcon={<span>→</span>} sx={{ color: '#8f2fff', fontSize: 16 }}>
           ดูทั้งหมด
         </Button>
       </Box>
@@ -53,16 +57,16 @@ export default function SuccessCases() {
               />
               <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', p: 2 }}>
                 <Box>
-                  <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 0.5, fontSize: 20 }}>
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1, fontSize: 18 }}>
                     {item.desc}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontSize: 14 }}>
                     โดย {item.author}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+                  <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1, fontSize: 14 }}>
                     {item.date}
                   </Typography>
                 </Box>
@@ -77,7 +81,7 @@ export default function SuccessCases() {
                       <Typography variant="caption">{item.comments}</Typography>
                     </Box>
                   </Box>
-                  <Button size="small" endIcon={<span>→</span>} sx={{ borderRadius: 2 }}>
+                  <Button size="small" variant="outlined" endIcon={<span>→</span>} sx={{ borderRadius: 2 }}>
                     ดูรายละเอียด
                   </Button>
                 </Box>

@@ -2,9 +2,11 @@ import DreamResultMain from '@/components/DreamResultMain';
 import DreamResultSidebar from '@/components/DreamResultSidebar';
 import { Box, Grid } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
+import Footer from '@/components/Footer';
 
-export default function DreamResultPage({ params }: { params: { slug: string } }) {
-  const keyword = decodeURIComponent(params.slug || '');
+export default async function DreamResultPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const keyword = decodeURIComponent(resolvedParams?.slug || '');
   return (
     <>
       {/* Header Image Full Screen */}
@@ -26,6 +28,7 @@ export default function DreamResultPage({ params }: { params: { slug: string } }
           </Grid>
         </Grid>
       </Box>
+      <Footer />
     </>
   );
 }

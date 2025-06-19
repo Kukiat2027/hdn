@@ -54,7 +54,7 @@ export default function DreamResultSidebar() {
                                     variant="contained"
                                     startIcon={<PhoneIcon />}
                                     sx={{
-                                        bgcolor: '#19c900',
+                                        bgcolor: '#00C600',
                                         color: '#fff',
                                         fontWeight: 700,
                                         borderRadius: 999,

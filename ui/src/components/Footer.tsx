@@ -9,7 +9,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 
 export default function Footer() {
     return (
-        <Box sx={{ bgcolor: '#a100e6', color: '#fff', py: 8, px: { xs: 2, md: 8 } }}>
+        <Box sx={{ bgcolor: '#a100e6', color: '#fff', py: 8, px: { xs: 2, md: 8 }, mt: 10 }}>
             <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {/* ซ้าย */}
                 <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -41,16 +41,16 @@ export default function Footer() {
                 {/* กลาง */}
                 <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Stack spacing={2} sx={{ mt: 2 }}>
-                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 20, textAlign: 'center' }}>
+                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 16, textAlign: 'center' }}>
                             ค้นหาความฝัน
                         </MuiLink>
-                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 20, textAlign: 'center' }}>
+                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 16, textAlign: 'center' }}>
                             ทริปสายบุญ
                         </MuiLink>
-                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 20, textAlign: 'center' }}>
+                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 16, textAlign: 'center' }}>
                             ดูดวงออนไลน์
                         </MuiLink>
-                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 20, textAlign: 'center' }}>
+                        <MuiLink href="#" underline="none" color="#fff" sx={{ fontSize: 16, textAlign: 'center' }}>
                             ร่วมบริจาคบุญ
                         </MuiLink>
                     </Stack>
