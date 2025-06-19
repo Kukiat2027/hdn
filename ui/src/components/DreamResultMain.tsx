@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useDreamStore } from '../store/useDreamStore';
 import { useDreamDetail } from '../hook/useDreamDetail';
+import TextToSpeech from './TextToSpeech';
 
 interface DreamResultMainProps {
     keyword?: string;
@@ -91,6 +92,9 @@ export default function DreamResultMain({ keyword }: DreamResultMainProps) {
                             ))}
                         </Box>
                     </>}
+                    {data.answer && <Box sx={{ mb: 4 }}>
+                        <TextToSpeech text={data.answer} />
+                    </Box>}
                 </>
             )}
             <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>
