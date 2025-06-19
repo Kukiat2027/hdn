@@ -1,4 +1,4 @@
-import Elysia from "elysia";
+import Elysia, { t } from "elysia";
 import { PGVectorStore } from "@langchain/community/vectorstores/pgvector";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
@@ -6,8 +6,10 @@ import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { createRetrievalChain } from "langchain/chains/retrieval";
 import { connectionConfig } from "./connection";
 
-export const langchain = new Elysia()
-  .get('/search', async () => {
+export const langchain = new Elysia({
+  prefix: '/langchain',
+})
+  .post('/search', async ({ body: { keyword } }) => {
     const llm = new ChatOpenAI({
       model: "gpt-4.1-mini",
       temperature: 0.5,
@@ -41,10 +43,19 @@ export const langchain = new Elysia()
     });
 
     const result = await retrieverChain.invoke({
-      input: "ฝันเห็นงู",
+      input: keyword,
     });
+    const { answer } = result
+    const [luckyPrediction = '', luckyNumber = ''] = answer.split('เลขนำโชค')
 
     return {
-      result,
+      keyword,
+      answer,
+      luckyPrediction,
+      luckyNumber,
     };
+  }, {
+    body: t.Object({
+      keyword: t.String(),
+    }),
   });
