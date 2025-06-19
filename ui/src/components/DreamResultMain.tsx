@@ -83,12 +83,14 @@ export default function DreamResultMain({ keyword }: DreamResultMainProps) {
             {data && (
                 <>
                     <Typography sx={{ mb: 4, fontSize: 18 }}>{data.answer}</Typography>
-                    <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>เลขนำโชค</Typography>
-                    <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
-                        {data.luckyNumber?.map((num: string | number) => (
-                            <Box key={num} sx={{ fontWeight: 900, fontSize: 18, color: '#a100e6', bgcolor: '#f3e6fa', px: 3, py: 1, borderRadius: 2 }}>{num}</Box>
-                        ))}
-                    </Box>
+                    {data.luckyNumber?.length > 0 && <>
+                        <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>เลขนำโชค</Typography>
+                        <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                            {data.luckyNumber?.map((num: string | number) => (
+                                <Box key={num} sx={{ fontWeight: 900, fontSize: 18, color: '#a100e6', bgcolor: '#f3e6fa', px: 3, py: 1, borderRadius: 2 }}>{num}</Box>
+                            ))}
+                        </Box>
+                    </>}
                 </>
             )}
             <Typography variant="h6" fontWeight="bold" sx={{ mb: 1 }}>

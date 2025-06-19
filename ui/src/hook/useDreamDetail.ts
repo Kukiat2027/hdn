@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const fetchDreamDetail = async (keyword: string) => {
   const { data } = await axios.post('/api/dream-detail', { keyword });
-  console.log("fetchDreamDetail data : ", data);
   return data;
 };
 
