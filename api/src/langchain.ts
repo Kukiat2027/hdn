@@ -10,10 +10,27 @@ import { connectionConfig } from "./connection";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import OpenAI from "openai";
 
+const whiteList = {
+  'ฝันเปียก': {
+    answer: 'ทำนายว่าเป็นคนชื่อเก่งเท่านั้น',
+    lucky: ['123'],
+    outputText: '**ฝันเปียก** หรือ Wet Dream (ชื่อทางวิทยาศาสตร์: Nocturnal emission) เป็นคนชื่อเก่งเท่านั้นที่ฝันเปียก'
+  },
+  'ฝันแห้ง': {
+    answer: 'ทำนายว่าเป็นคนชื่อเก่งเท่านั้น',
+    lucky: ['123'],
+    outputText: '**ฝันแห้ง** หรือ Dry Dream (ชื่อทางวิทยาศาสตร์: Nocturnal emission) เป็นคนชื่อเก่งเท่านั้นที่ฝันแห้ง'
+  }
+}
 export const langchain = new Elysia({
   prefix: '/langchain',
 })
   .post('/search', async ({ body: { keyword } }) => {
+    // whitelist user
+    if (whiteList[keyword as keyof typeof whiteList]) {
+      return whiteList[keyword as keyof typeof whiteList]
+    }
+
     const llm = new ChatOpenAI({
       model: "gpt-4.1-mini",
       temperature: 0.5,
@@ -50,20 +67,21 @@ export const langchain = new Elysia({
       input: keyword,
     });
 
-    let luckyNumber = answer.match(/\b\d{2,3}\b/g) ?? []
+    let luckyNumber: string[] = answer.match(/\b\d{2,3}\b/g) ?? []
     // option on review
     const client = new OpenAI();
-    const { output_text } = await client.responses.create({
-      model: "gpt-4.1",
-      input: keyword
-    });
+    // const { output_text } = await client.responses.create({
+    //   model: "gpt-4.1",
+    //   input: keyword
+    // });
 
     if (luckyNumber.length <= 0) {
       const response = await client.responses.create({
         model: "gpt-4.1",
         input: `${keyword} มีเลขนำโชคอะไรบ้าง`
       });
-      luckyNumber = response.output_text.match(/\b\d{2,3}\b/g) ?? []
+      // luckyNumber = response.output_text.match(/\b\d{2,3}\b/g) ?? []
+      luckyNumber = Array.from({ length: 100 }, (_, i) => i).map(i => i.toString().padStart(2, '0'))
     }
 
     if (answer.includes('ไม่มีคำทำนาย')) {
@@ -80,7 +98,7 @@ export const langchain = new Elysia({
       keyword,
       answer,
       luckyNumber,
-      outputText: output_text,
+      outputText: '',
     };
   }, {
     body: t.Object({
@@ -88,7 +106,7 @@ export const langchain = new Elysia({
     }),
   })
   .post('/upload', async () => {
-    const loader = new TextLoader("./src/data/final_formatted_dreams.txt");
+    const loader = new TextLoader("./src/data/keng.txt");
     const docs = await loader.load();
 
     const splitter = new RecursiveCharacterTextSplitter({
