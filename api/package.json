@@ -6,10 +6,20 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@langchain/core": "^0.3.59",
+    "@langchain/openai": "^0.5.13",
+    "@types/pg": "^8.15.4",
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "@langchain/community": "^0.3.46",
+    "@supabase/supabase-js": "^2.50.0",
+    "cheerio": "^1.1.0",
+    "langchain": "^0.3.28",
+    "pg": "^8.16.1",
+    "pgvector": "^0.2.1",
+    "puppeteer": "^24.10.1"
   },
   "module": "src/index.js"
 }
